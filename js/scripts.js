@@ -26,3 +26,26 @@ const navegacion = document.querySelector(".navegacion")
 navegacion.appendChild(nuevoEnlance)
 
 console.log(nuevoEnlance)
+
+
+// Eventos
+
+console.log(1)
+
+window.addEventListener("load", function() {
+    console.log(2)
+})
+
+window.onload = function(){
+    console.log(3)
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log(4)
+})
+
+window.onscroll = function() {
+    console.log("Moviendo")
+}
+
+console.log(15)
