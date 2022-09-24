@@ -53,12 +53,12 @@ window.onscroll = function() {
 
 // Seleccionar elementos
 
-const btnEnviar = document.querySelector(".boton--primario")
-btnEnviar.addEventListener("click", function(evento) {
-    console.log(evento)
-    evento.preventDefault()
-    console.log("Enviando formulario")
-})
+// const btnEnviar = document.querySelector(".boton--primario")
+// btnEnviar.addEventListener("click", function(evento) {
+//     console.log(evento)
+//     evento.preventDefault()
+//     console.log("Enviando formulario")
+// })
 
 // Eventos de teclado
 
@@ -80,13 +80,49 @@ mensaje.addEventListener("input", leerTexto)
 formulario.addEventListener("submit", function(evento) {
     evento.preventDefault();
 
-    console.log("Enviando formulario")
+    // Validar
+    const {nombre, email, mensaje} = datos;
+
+    if (nombre === "" || email === "" || mensaje === "") {
+        mostrarError("Todos los campos son obligatorios")
+        return
+    }
+    // Enviar
+
+    envioCorrecto("Envio exitoso")
 })
 
 function leerTexto(evento) {
     console.log(evento.target.value)
     datos[evento.target.id] = evento.target.value
-    console.log(datos)
+    // console.log(datos)
+}
+
+// Muestra un error 
+
+function mostrarError(mensaje) {
+    const error = document.createElement("p")
+    error.textContent = mensaje
+    error.classList.add("error")
+
+    formulario.appendChild(error)
+    
+    // Desparacer
+    setTimeout(() => {
+        error.remove()
+    }, 5000)
+}
+
+function envioCorrecto(mensaje) {
+    const envio = document.createElement("p")
+    envio.textContent = mensaje
+    envio.classList.add("correcto")
+
+    formulario.appendChild(envio)
+
+    setTimeout(() => {
+        envio.remove()
+    }, 5000)
 }
 
 
