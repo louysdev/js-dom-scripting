@@ -49,3 +49,14 @@ window.onscroll = function() {
 }
 
 console.log(15)
+
+
+// Seleccionar elementos
+
+const btnEnviar = document.querySelector(".boton--primario")
+btnEnviar.addEventListener("click", function(evento) {
+    console.log(evento)
+    evento.preventDefault()
+    console.log("Enviando formulario")
+})
+
