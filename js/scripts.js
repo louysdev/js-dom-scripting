@@ -84,12 +84,12 @@ formulario.addEventListener("submit", function(evento) {
     const {nombre, email, mensaje} = datos;
 
     if (nombre === "" || email === "" || mensaje === "") {
-        mostrarError("Todos los campos son obligatorios")
+        mostrarAlerta("Todos los campos son obligatorios", "error")
         return
     }
     // Enviar
 
-    envioCorrecto("Envio exitoso")
+    mostrarAlerta("Envio exitoso")
 })
 
 function leerTexto(evento) {
@@ -98,31 +98,22 @@ function leerTexto(evento) {
     // console.log(datos)
 }
 
-// Muestra un error 
 
-function mostrarError(mensaje) {
-    const error = document.createElement("p")
-    error.textContent = mensaje
-    error.classList.add("error")
+// Refactoring
+// Mostrar alerta
+function mostrarAlerta(mensaje, error = null) {
+    const alerta = document.createElement("p")
+    alerta.textContent = mensaje
 
-    formulario.appendChild(error)
-    
-    // Desparacer
-    setTimeout(() => {
-        error.remove()
-    }, 5000)
-}
+    if(error) {
+        alerta.classList.add("error")
+    } else {
+        alerta.classList.add("correcto")
+    }
 
-function envioCorrecto(mensaje) {
-    const envio = document.createElement("p")
-    envio.textContent = mensaje
-    envio.classList.add("correcto")
-
-    formulario.appendChild(envio)
+    formulario.appendChild(alerta)
 
     setTimeout(() => {
-        envio.remove()
+        alerta.remove()
     }, 5000)
 }
-
-
